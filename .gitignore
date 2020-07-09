@@ -1,0 +1,76 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+*.class
+
+### Package Files ###
+*.war
+*.ear
+
+.metadata
+
+### Gradle ###
+/build
+/buildSrc/build
+/subprojects/*/build
+/subprojects/docs/src/samples/*/*/build
+
+### IDEA ###
+.shelf
+/*.iml
+/*.ipr
+/*.iws
+/buildSrc/*.iml
+/buildSrc/*.ipr
+/buildSrc/*.iws
+/buildSrc/out
+/out
+/subprojects/*/*.iml
+/subprojects/*/out
+
+### Eclipse ###
+*.classpath
+*.project
+*.settings
+/bin
+/subprojects/*/bin
+atlassian-ide-plugin.xml
+
+### NetBeans ###
+.nb-gradle
+.nb-gradle-properties
+
+### OS X ###
+.DS_Store
