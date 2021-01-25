@@ -27,7 +27,8 @@ public class PokePasteParserService {
 
             String fullTextBlock = pokemonElement.getElementsByTag("pre").text();
             int indexEndOfName = fullTextBlock.indexOf("@");
-            int indexEndOfItem = fullTextBlock.indexOf("Ability:");
+            String abilityString = "Ability:";
+            int indexEndOfItem = fullTextBlock.indexOf(abilityString);
             int indexEndOfAbility = fullTextBlock.indexOf("Level:");
 
             // Extract Name and Item
@@ -37,7 +38,7 @@ public class PokePasteParserService {
             pokemonModel.setItem(item);
 
             // Extract Ability
-            String ability = fullTextBlock.substring(indexEndOfItem + 1, indexEndOfAbility).trim();
+            String ability = fullTextBlock.substring(indexEndOfItem + abilityString.length(), indexEndOfAbility).trim();
             pokemonModel.setAbility(ability);
 
             teamModel.addPokemonToTeam(pokemonModel);
