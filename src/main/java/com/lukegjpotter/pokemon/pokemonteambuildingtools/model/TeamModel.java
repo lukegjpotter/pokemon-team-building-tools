@@ -15,16 +15,16 @@ public class TeamModel {
     @Id @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
 
-    private List<Pokemon> team;
+    private List<PokemonModel> team;
 
     public TeamModel() {
         this.team = new ArrayList<>(TEAM_SIZE);
     }
 
-    public TeamModel(List<Pokemon> team) {
+    public TeamModel(List<PokemonModel> team) {
         this.team = new ArrayList<>(TEAM_SIZE);
 
-        for(int i = 0; i < TEAM_SIZE; i++) {
+        for (int i = 0; i < TEAM_SIZE; i++) {
             addPokemonToTeam(team.get(i));
         }
     }
@@ -37,19 +37,19 @@ public class TeamModel {
         this.id = id;
     }
 
-    public List<Pokemon> getTeam() {
+    public List<PokemonModel> getTeam() {
         return team;
     }
 
-    public void setTeam(List<Pokemon> team) {
+    public void setTeam(List<PokemonModel> team) {
         this.team = team;
     }
 
-    public boolean addPokemonToTeam(Pokemon pokemon) {
+    public boolean addPokemonToTeam(PokemonModel pokemon) {
         return getTeam().add(pokemon);
     }
 
-    public boolean removePokemonFromTeam(Pokemon pokemon){
+    public boolean removePokemonFromTeam(PokemonModel pokemon) {
         return getTeam().remove(pokemon);
     }
 }

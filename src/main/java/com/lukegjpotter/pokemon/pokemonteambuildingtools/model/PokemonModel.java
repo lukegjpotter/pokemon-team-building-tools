@@ -4,19 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Pokemon {
+public class PokemonModel {
 
-    @Id @GeneratedValue(strategy= GenerationType.TABLE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     private String name, item, ability, nature, gender;
     private StatSpread evSpread, ivSpread;
     private List<Move> moveset;
 
-    public Pokemon(String name, String item, String ability, String nature, String gender, StatSpread evSpread, StatSpread ivSpread, List<Move> moveset) {
+    public PokemonModel(String name, String item, String ability, String nature, String gender, StatSpread evSpread, StatSpread ivSpread, List<Move> moveset) {
         this.name = name;
         this.item = item;
         this.ability = ability;
@@ -25,6 +27,12 @@ public class Pokemon {
         this.evSpread = evSpread;
         this.ivSpread = ivSpread;
         this.moveset = moveset;
+    }
+
+    public PokemonModel() {
+        this.evSpread = StatSpread.EVSPREAD_BLANK(); // Start with 0EVs in every Stat.
+        this.ivSpread = StatSpread.IVSPREAD_FAST_PHYSICAL_ATTACKER(); // Start with 6IV
+        this.moveset = new ArrayList<>();
     }
 
     public long getId() {

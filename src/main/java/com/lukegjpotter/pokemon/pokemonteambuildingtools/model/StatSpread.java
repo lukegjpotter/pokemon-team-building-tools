@@ -8,11 +8,31 @@ import javax.persistence.Id;
 @Entity
 public class StatSpread {
 
-    @Id @GeneratedValue(strategy=GenerationType.TABLE)
+    private static final int IV_MAX = 31, MIN = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
-
-    private static final int MAX = 31, MIN = 0;
     private int hp, atk, def, spa, spd, spe;
+
+    public static StatSpread IVSPREAD_FAST_PHYSICAL_ATTACKER() {
+        return new StatSpread(IV_MAX, IV_MAX, IV_MAX, IV_MAX, IV_MAX, IV_MAX);
+    }
+
+    public static StatSpread IVSPREAD_SLOW_PHYSICAL_ATTACKER() {
+        return new StatSpread(IV_MAX, IV_MAX, IV_MAX, IV_MAX, IV_MAX, MIN);
+    }
+
+    public static StatSpread IVSPREAD_FAST_SPECIAL_ATTACKER() {
+        return new StatSpread(IV_MAX, MIN, IV_MAX, IV_MAX, IV_MAX, IV_MAX);
+    }
+
+    public static StatSpread IVSPREAD_SLOW_SPECIAL_ATTACKER() {
+        return new StatSpread(IV_MAX, MIN, IV_MAX, IV_MAX, IV_MAX, MIN);
+    }
+
+    public static StatSpread EVSPREAD_BLANK() {
+        return new StatSpread(MIN, MIN, MIN, MIN, MIN, MIN);
+    }
 
     public StatSpread(int hp, int atk, int def, int spa, int spd, int spe) {
         this.hp = hp;
@@ -21,22 +41,6 @@ public class StatSpread {
         this.spa = spa;
         this.spd = spd;
         this.spe = spe;
-    }
-
-    public StatSpread fastPhysicalAttacker() {
-        return new StatSpread(MAX, MAX, MAX, MAX, MAX, MAX);
-    }
-
-    public StatSpread slowPhysicalAttacker() {
-        return new StatSpread(MAX, MAX, MAX, MAX, MAX, MIN);
-    }
-
-    public StatSpread fastSpecialAttacker() {
-        return new StatSpread(MAX, MIN, MAX, MAX, MAX, MAX);
-    }
-
-    public StatSpread slowSpecialAttacker() {
-        return new StatSpread(MAX, MIN, MAX, MAX, MAX, MIN);
     }
 
     public long getId() {

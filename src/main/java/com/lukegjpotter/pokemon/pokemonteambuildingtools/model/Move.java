@@ -23,6 +23,10 @@ public class Move {
         this.secondaryEffectChance = secondaryEffectChance;
     }
 
+    public Move(String name) {
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

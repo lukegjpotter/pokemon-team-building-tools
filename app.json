@@ -1,0 +1,12 @@
+{
+  "name": "Pokemon Team Building Tools",
+  "description": "A collection of tools for building Pokémon Teams",
+  "repository": "https://github.com/lukegjpotter/pokemon-team-building-tools",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "keywords": [
+    "java",
+    "scraper",
+    "jsoup",
+    "phantomjsdriver"
+  ]
+}
