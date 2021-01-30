@@ -90,17 +90,27 @@ class TestUtils {
         charizardGmax.setAbility("Solar Power");
         charizardGmax.setNature("Timid");
         charizardGmax.setGender("");
-        StatSpread evSpread = StatSpread.EVSPREAD_BLANK();
-        evSpread.setHp(4);
-        evSpread.setSpa(252);
-        evSpread.setSpe(252);
-        charizardGmax.setEvSpread(evSpread);
+        charizardGmax.setEvSpread(new StatSpread(4, 0, 0, 252, 0, 252));
         charizardGmax.setIvSpread(StatSpread.IVSPREAD_FAST_SPECIAL_ATTACKER());
         charizardGmax.addMoveToMoveset(new Move("Protect"));
         charizardGmax.addMoveToMoveset(new Move("Heat Wave"));
         charizardGmax.addMoveToMoveset(new Move("Air Slash"));
         charizardGmax.addMoveToMoveset(new Move("Solar Beam"));
         teamModel.addPokemonToTeam(charizardGmax);
+
+        PokemonModel venusaurGmax = new PokemonModel();
+        venusaurGmax.setName("Venusaur-Gmax");
+        venusaurGmax.setItem("Life Orb");
+        venusaurGmax.setAbility("Chlorophyll");
+        venusaurGmax.setNature("Timid");
+        venusaurGmax.setGender("");
+        venusaurGmax.setEvSpread(new StatSpread(4, 0, 4, 244, 4, 252));
+        venusaurGmax.setIvSpread(StatSpread.IVSPREAD_FAST_SPECIAL_ATTACKER());
+        venusaurGmax.addMoveToMoveset(new Move("Sleep Powder"));
+        venusaurGmax.addMoveToMoveset(new Move("Leaf Storm"));
+        venusaurGmax.addMoveToMoveset(new Move("Sludge Bomb"));
+        venusaurGmax.addMoveToMoveset(new Move("Earth Power"));
+        teamModel.addPokemonToTeam(venusaurGmax);
 
         return teamModel;
     }

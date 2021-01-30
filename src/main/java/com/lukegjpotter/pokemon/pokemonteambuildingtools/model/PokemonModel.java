@@ -1,9 +1,6 @@
 package com.lukegjpotter.pokemon.pokemonteambuildingtools.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +12,13 @@ public class PokemonModel {
     private long id;
 
     private String name, item, ability, nature, gender;
-    private StatSpread evSpread, ivSpread;
+    @OneToOne()
+    @JoinColumn()
+    private StatSpread evSpread;
+    @OneToOne()
+    @JoinColumn()
+    private StatSpread ivSpread;
+    @OneToMany()
     private List<Move> moveset;
 
     public PokemonModel(String name, String item, String ability, String nature, String gender, StatSpread evSpread, StatSpread ivSpread, List<Move> moveset) {

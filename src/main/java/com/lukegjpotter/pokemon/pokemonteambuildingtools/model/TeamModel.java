@@ -1,9 +1,6 @@
 package com.lukegjpotter.pokemon.pokemonteambuildingtools.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +12,7 @@ public class TeamModel {
     @Id @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
 
+    @OneToMany()
     private List<PokemonModel> team;
 
     public TeamModel() {
