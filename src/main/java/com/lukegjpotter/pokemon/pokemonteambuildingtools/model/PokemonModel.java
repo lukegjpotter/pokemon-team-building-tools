@@ -117,4 +117,14 @@ public class PokemonModel {
     public boolean removeMoveFromMoveset(Move move) {
         return this.getMoveset().remove(move);
     }
+
+    public void mergeIvSpread(StatSpread ivSpreadToMerge) {
+        StatSpread ivSpreadExisting = this.getIvSpread();
+        if (ivSpreadExisting.getHp() > ivSpreadToMerge.getHp()) this.getIvSpread().setHp(ivSpreadToMerge.getHp());
+        if (ivSpreadExisting.getAtk() > ivSpreadToMerge.getAtk()) this.getIvSpread().setAtk(ivSpreadToMerge.getAtk());
+        if (ivSpreadExisting.getDef() > ivSpreadToMerge.getDef()) this.getIvSpread().setDef(ivSpreadToMerge.getDef());
+        if (ivSpreadExisting.getSpa() > ivSpreadToMerge.getSpa()) this.getIvSpread().setSpa(ivSpreadToMerge.getSpa());
+        if (ivSpreadExisting.getSpd() > ivSpreadToMerge.getSpd()) this.getIvSpread().setSpd(ivSpreadToMerge.getSpd());
+        if (ivSpreadExisting.getSpe() > ivSpreadToMerge.getSpe()) this.getIvSpread().setSpe(ivSpreadToMerge.getSpe());
+    }
 }
