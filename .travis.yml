@@ -1,5 +1,4 @@
 language: java
-sudo: required
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -27,9 +26,12 @@ services:
 addons:
   postgresql: '12'
   apt:
+    sources:
+      - google-chrome
     packages:
       - postgresql-12
       - postgresql-client-12
+      - google-chrome-stable
 
 before_install:
   - sudo pg_dropcluster --stop 12 main
@@ -41,4 +43,4 @@ before_script:
   - psql -c 'create database pokemonteams;' -U postgres
 
 after_success:
-  - gradlew check jacocoTestReport coveralls
+  - gradle check jacocoTestReport coveralls
