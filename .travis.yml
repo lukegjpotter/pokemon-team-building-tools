@@ -18,5 +18,9 @@ jdk:  oraclejdk13
 
 services: postgresql
 
+addons: postgresql: '12.2'
+
+before_script: psql --version
+
 after_success:
   - ./gradlew check jacocoTestReport coveralls
