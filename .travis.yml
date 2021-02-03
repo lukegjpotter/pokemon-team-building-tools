@@ -41,4 +41,4 @@ before_script:
   - psql -c 'create database pokemonteams;' -U postgres
 
 after_success:
-  - ./gradlew check jacocoTestReport coveralls
+  - gradlew check jacocoTestReport coveralls
