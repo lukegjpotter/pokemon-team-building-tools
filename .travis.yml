@@ -13,12 +13,10 @@ dist: focal
 
 jdk:  oraclejdk13
 
-#env: DATABASE_URL=postgres://postgres@localhost/pokemonteams
+#env: DATABASE_URL=postgres://postgres@localhost/travistestdb
+#before_script: psql -c 'create database travistestdb;' -U postgres
 
 services: postgresql
-
-before_script:
-  - psql -c 'create database pokemonteams;' -U postgres
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
