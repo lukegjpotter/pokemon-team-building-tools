@@ -1,4 +1,5 @@
 language: java
+os: linux
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -13,14 +14,17 @@ dist: focal
 
 jdk:  oraclejdk13
 
-#env: DATABASE_URL=postgres://postgres@localhost/travistestdb
-#before_script: psql -c 'create database travistestdb;' -U postgres
+services:
+  - postgresql
 
-services: postgresql
+addons:
+  - postgresql: '12.2'
 
-addons: postgresql: '12.2'
+before_script:
+  - psql --version
+  - psql -c 'create database travistestdb;' -U postgres
 
-before_script: psql --version
+#env: DATABASE_URL=postgres://postgres:@localhost/travistestdb
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
