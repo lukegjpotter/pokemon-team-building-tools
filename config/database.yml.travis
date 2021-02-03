@@ -1,0 +1,14 @@
+spring:
+    datasource:
+        initialSize: 5
+        maxActive: 10
+        maxIdle: 5
+        minIdle: 2
+        platform: postgres
+        removeAbandoned: true
+    jpa:
+        database: POSTGRESQL
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: create
+        show-sql: false
