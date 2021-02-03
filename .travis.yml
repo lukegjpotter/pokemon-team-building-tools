@@ -9,33 +9,13 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-dist: trusty
+dist: focal
 
-jdk:
-  - oraclejdk13
+jdk:  oraclejdk11
 
-env:
-  - global:
-    - PGUSER=postgres
-    - PGPORT=5432
-  - DATABASE_URL=postgres://postgres@localhost/pokemonteams
+env: DATABASE_URL=postgres://postgres@localhost/pokemonteams
 
-services:
-  - postgresql
-
-addons:
-  chrome: stable
-  postgresql: '12'
-  apt:
-    packages:
-      - postgresql-12
-      - postgresql-client-12
-
-before_install:
-  - sudo pg_dropcluster --stop 12 main
-  - sudo pg_upgradecluster 11 main
-  - sudo pg_ctlcluster 12 main restart
-  - sudo pg_dropcluster 11 main
+services: postgresql
 
 before_script:
   - psql -c 'create database pokemonteams;' -U postgres
