@@ -17,14 +17,12 @@ jdk:  oraclejdk13
 services:
   - postgresql
 
-addons:
-  - postgresql: '12.2'
-
 before_script:
+  - cp config/database.yml.travis config/database.yml
   - psql --version
-  - psql -c 'create database travistestdb;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres
 
-#env: DATABASE_URL=postgres://postgres:@localhost/travistestdb
+env: DATABASE_URL=postgres://postgres:@localhost:5432/travis_ci_test
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
