@@ -8,7 +8,8 @@ After that we can start to do EV Spread optimisations, incase EVs are being wast
 ## Project Status
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/lukegjpotter/pokemon-team-building-tools/blob/master/)  
 [![Maintainability](https://api.codeclimate.com/v1/badges/8bcc99b2fa15519f0655/maintainability)](https://codeclimate.com/github/lukegjpotter/pokemon-team-building-tools/maintainability) 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8bcc99b2fa15519f0655/test_coverage)](https://codeclimate.com/github/lukegjpotter/pokemon-team-building-tools/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8bcc99b2fa15519f0655/test_coverage)](https://codeclimate.com/github/lukegjpotter/pokemon-team-building-tools/test_coverage) 
+[![Build Status](https://travis-ci.com/lukegjpotter/pokemon-team-building-tools.svg?branch=master)](https://travis-ci.com/lukegjpotter/pokemon-team-building-tools)
 
 ## Project Setup
 If you want to use/develop for this you can setup your local environment with the instructions on the [wiki's Project Setup](https://github.com/lukegjpotter/pokemon-team-building-tools/wiki/Project-Setup) Page.
