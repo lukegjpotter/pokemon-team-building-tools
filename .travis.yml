@@ -11,9 +11,9 @@ cache:
 
 dist: focal
 
-jdk:  oraclejdk11
+jdk:  oraclejdk13
 
-env: DATABASE_URL=postgres://postgres@localhost/pokemonteams
+#env: DATABASE_URL=postgres://postgres@localhost/pokemonteams
 
 services: postgresql
 
@@ -21,4 +21,4 @@ before_script:
   - psql -c 'create database pokemonteams;' -U postgres
 
 after_success:
-  - gradle check jacocoTestReport coveralls
+  - ./gradlew check jacocoTestReport coveralls
