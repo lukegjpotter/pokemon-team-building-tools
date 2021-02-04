@@ -17,12 +17,31 @@ jdk:  oraclejdk13
 services:
   - postgresql
 
+addons:
+  postgresql: '12.2'
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-12 postgresql-client-12
+  - sudo cp /etc/postgresql/{9.6,12}/main/pg_hba.conf
+  - sudo service postgresql restart 12
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql --version
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'CREATE DATABASE testdb;' -U postgres
 
-env: DATABASE_URL=postgres://postgres:@localhost:5432/travis_ci_test
+script:
+  - psql -c 'SELECT version();'
+  - ./gradlew build bootRun
+
+env:
+  - DATABASE_URL=postgres://postgres:@localhost:5432/testdb
+  - global:
+    - PGUSER=postgres
+    - PGPORT=5432
+    - PGPASSWORD=1234
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
