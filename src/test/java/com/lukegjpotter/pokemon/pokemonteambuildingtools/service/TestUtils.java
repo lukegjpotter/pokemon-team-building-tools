@@ -89,7 +89,6 @@ class TestUtils {
         charizardGmax.setItem("Focus Sash");
         charizardGmax.setAbility("Solar Power");
         charizardGmax.setNature("Timid");
-        charizardGmax.setGender("");
         charizardGmax.setEvSpread(new StatSpread(4, 0, 0, 252, 0, 252));
         charizardGmax.setIvSpread(StatSpread.IVSPREAD_FAST_SPECIAL_ATTACKER());
         charizardGmax.addMoveToMoveset(new Move("Protect"));
@@ -103,7 +102,6 @@ class TestUtils {
         venusaurGmax.setItem("Life Orb");
         venusaurGmax.setAbility("Chlorophyll");
         venusaurGmax.setNature("Timid");
-        venusaurGmax.setGender("");
         venusaurGmax.setEvSpread(new StatSpread(4, 0, 4, 244, 4, 252));
         venusaurGmax.setIvSpread(StatSpread.IVSPREAD_FAST_SPECIAL_ATTACKER());
         venusaurGmax.addMoveToMoveset(new Move("Sleep Powder"));
@@ -111,6 +109,58 @@ class TestUtils {
         venusaurGmax.addMoveToMoveset(new Move("Sludge Bomb"));
         venusaurGmax.addMoveToMoveset(new Move("Earth Power"));
         teamModel.addPokemonToTeam(venusaurGmax);
+
+        PokemonModel torkoal = new PokemonModel();
+        torkoal.setName("Torkoal");
+        torkoal.setItem("Sitrus Berry");
+        torkoal.setAbility("Drought");
+        torkoal.setNature("Quiet");
+        torkoal.setEvSpread(new StatSpread(188, 0, 0, 196, 124, 0));
+        torkoal.setIvSpread(StatSpread.IVSPREAD_SLOW_SPECIAL_ATTACKER());
+        torkoal.addMoveToMoveset(new Move("Protect"));
+        torkoal.addMoveToMoveset(new Move("Heat Wave"));
+        torkoal.addMoveToMoveset(new Move("Will-O-Wisp"));
+        torkoal.addMoveToMoveset(new Move("Yawn"));
+        teamModel.addPokemonToTeam(torkoal);
+
+        PokemonModel indeedeeF = new PokemonModel();
+        indeedeeF.setName("Indeedee-F");
+        indeedeeF.setItem("Psychic Seed");
+        indeedeeF.setAbility("Psychic Surge");
+        indeedeeF.setNature("Sassy");
+        indeedeeF.setEvSpread(new StatSpread(244, 0, 228, 0, 36, 0));
+        indeedeeF.setIvSpread(StatSpread.IVSPREAD_SLOW_SPECIAL_ATTACKER());
+        indeedeeF.addMoveToMoveset(new Move("Protect"));
+        indeedeeF.addMoveToMoveset(new Move("Follow Me"));
+        indeedeeF.addMoveToMoveset(new Move("Expanding Force"));
+        indeedeeF.addMoveToMoveset(new Move("Dazzling Gleam"));
+        teamModel.addPokemonToTeam(indeedeeF);
+
+        PokemonModel glastrier = new PokemonModel();
+        glastrier.setName("Glastrier");
+        glastrier.setItem("Weakness Policy");
+        glastrier.setAbility("Chilling Neigh");
+        glastrier.setNature("Brave");
+        glastrier.setEvSpread(new StatSpread(252, 252, 0, 0, 4, 0));
+        glastrier.setIvSpread(StatSpread.IVSPREAD_SLOW_PHYSICAL_ATTACKER());
+        glastrier.addMoveToMoveset(new Move("Protect"));
+        glastrier.addMoveToMoveset(new Move("Icicle Crash"));
+        glastrier.addMoveToMoveset(new Move("Smart Strike"));
+        glastrier.addMoveToMoveset(new Move("High Horsepower"));
+        teamModel.addPokemonToTeam(glastrier);
+
+        PokemonModel dusclops = new PokemonModel();
+        dusclops.setName("Dusclops");
+        dusclops.setItem("Eviolite");
+        dusclops.setAbility("Frisk");
+        dusclops.setNature("Impish");
+        dusclops.setEvSpread(new StatSpread(252, 0, 68, 0, 188, 0));
+        dusclops.setIvSpread(StatSpread.IVSPREAD_SLOW_PHYSICAL_ATTACKER());
+        dusclops.addMoveToMoveset(new Move("Helping Hand"));
+        dusclops.addMoveToMoveset(new Move("Brick Break"));
+        dusclops.addMoveToMoveset(new Move("Trick Room"));
+        dusclops.addMoveToMoveset(new Move("Haze"));
+        teamModel.addPokemonToTeam(dusclops);
 
         return teamModel;
     }

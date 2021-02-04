@@ -1,5 +1,6 @@
 package com.lukegjpotter.pokemon.pokemonteambuildingtools.service;
 
+import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.Move;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.PokemonModel;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.StatSpread;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.TeamModel;
@@ -9,6 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
 @Service
@@ -65,6 +69,17 @@ public class PokePasteParserService {
                 StatSpread ivs = determineIvSpread(ivSpread);
                 pokemonModel.mergeIvSpread(ivs);
             }
+
+            // Extract Moves
+            String movesAndMaybeIvs = fullTextBlock.substring(indexEndOfNature + natureString.length());
+            List<String> moves = new ArrayList<>(Arrays.asList(movesAndMaybeIvs.split("\n")));
+            moves.remove(0); // first element in list is ""
+            // Check for IVs, if present remove it.
+            if (indexEndOfIVs > 0) moves.remove(0); // new first element in list "Ivs: ..."
+            // Remove the "- " at the start of the Moves.
+            List<Move> moveset = new ArrayList<>();
+            moves.forEach(s -> moveset.add(new Move(s.substring(2).trim())));
+            pokemonModel.setMoveset(moveset);
 
             teamModel.addPokemonToTeam(pokemonModel);
         }

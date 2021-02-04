@@ -3,6 +3,7 @@ package com.lukegjpotter.pokemon.pokemonteambuildingtools.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class TeamModel {
@@ -49,5 +50,18 @@ public class TeamModel {
 
     public boolean removePokemonFromTeam(PokemonModel pokemon) {
         return getTeam().remove(pokemon);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TeamModel teamModel = (TeamModel) o;
+        return id == teamModel.id && Objects.equals(team, teamModel.team);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, team);
     }
 }

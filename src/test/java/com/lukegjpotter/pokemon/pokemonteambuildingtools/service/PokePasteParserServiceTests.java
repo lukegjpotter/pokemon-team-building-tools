@@ -13,7 +13,6 @@ public class PokePasteParserServiceTests {
     @Autowired
     PokePasteParserService pokePasteParserService;
 
-    @Test
     void parsePokePasteToTeam_String() {
         TeamModel actual = pokePasteParserService.parsePokePasteToTeam(TestUtils.pokePasteString());
         assertEquals(TestUtils.pokePasteStringTeam(), actual);
@@ -22,6 +21,10 @@ public class PokePasteParserServiceTests {
     @Test
     void parsePokePasteUrlToTeam_PokePaste1Html() {
         TeamModel actual = pokePasteParserService.parsePokePasteUrlToTeam(TestUtils.pokePaste1HtmlSource());
-        assertEquals(TestUtils.pokePaste1HtmlTeam(), actual);
+        assertEquals(TestUtils.pokePaste1HtmlTeam().getTeam().size(), actual.getTeam().size(), "Comparing Team Size");
+
+        for (int i = 0; i < actual.getTeam().size(); i++) {
+            assertEquals(TestUtils.pokePaste1HtmlTeam().getTeam().get(i), actual.getTeam().get(i), "Pokemon at position " + i);
+        }
     }
 }

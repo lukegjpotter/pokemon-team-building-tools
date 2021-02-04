@@ -3,6 +3,7 @@ package com.lukegjpotter.pokemon.pokemonteambuildingtools.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class PokemonModel {
@@ -126,5 +127,18 @@ public class PokemonModel {
         if (ivSpreadExisting.getSpa() > ivSpreadToMerge.getSpa()) this.getIvSpread().setSpa(ivSpreadToMerge.getSpa());
         if (ivSpreadExisting.getSpd() > ivSpreadToMerge.getSpd()) this.getIvSpread().setSpd(ivSpreadToMerge.getSpd());
         if (ivSpreadExisting.getSpe() > ivSpreadToMerge.getSpe()) this.getIvSpread().setSpe(ivSpreadToMerge.getSpe());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PokemonModel that = (PokemonModel) o;
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(item, that.item) && Objects.equals(ability, that.ability) && Objects.equals(nature, that.nature) && Objects.equals(gender, that.gender) && Objects.equals(evSpread, that.evSpread) && Objects.equals(ivSpread, that.ivSpread) && Objects.equals(moveset, that.moveset);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, item, ability, nature, gender, evSpread, ivSpread, moveset);
     }
 }

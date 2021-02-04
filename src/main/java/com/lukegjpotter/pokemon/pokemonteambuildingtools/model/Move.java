@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Move {
@@ -33,5 +34,25 @@ public class Move {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Move {" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Move move = (Move) o;
+        return id == move.id && damage == move.damage && accuracy == move.accuracy && secondaryEffectChance == move.secondaryEffectChance && Objects.equals(name, move.name) && Objects.equals(effect, move.effect) && Objects.equals(detailedEffect, move.detailedEffect);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, effect, detailedEffect, damage, accuracy, secondaryEffectChance);
     }
 }

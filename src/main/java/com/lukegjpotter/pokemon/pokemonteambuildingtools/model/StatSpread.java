@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class StatSpread {
@@ -97,5 +98,18 @@ public class StatSpread {
 
     public void setSpe(int spe) {
         this.spe = spe;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StatSpread that = (StatSpread) o;
+        return id == that.id && hp == that.hp && atk == that.atk && def == that.def && spa == that.spa && spd == that.spd && spe == that.spe;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, hp, atk, def, spa, spd, spe);
     }
 }
