@@ -18,9 +18,31 @@ import java.util.StringTokenizer;
 @Service
 public class PokePasteParserService {
 
+    private String nameItemDividerString = "@", abilityString = "Ability:", levelString = "Level:", evsString = "EVs:", natureString = "Nature", ivsString = "IVs:";
+
     public TeamModel parsePokePasteToTeam(String pokePaste) {
-        // TODO Implement This.
-        return new TeamModel();
+
+        TeamModel teamModel = new TeamModel();
+
+        String[] linesOfPokePaste = pokePaste.split("\n");
+        int numberOfMovesSet = 0;
+
+        for (String line : linesOfPokePaste) {
+            line = line.trim();
+            PokemonModel pokemonModel = new PokemonModel();
+
+            // Extract Name And Item
+            if (line.contains(nameItemDividerString)) {
+                int indexEndOfName = line.indexOf(nameItemDividerString);
+                pokemonModel.setName(line.substring(0, indexEndOfName).trim());
+                pokemonModel.setItem(line.substring(indexEndOfName + nameItemDividerString.length()).trim());
+                break;
+            }
+
+            if (numberOfMovesSet == 4) teamModel.addPokemonToTeam(pokemonModel);
+        }
+
+        return teamModel;
     }
 
     public TeamModel parsePokePasteUrlToTeam(String pokePasteHtmlSource) {
@@ -33,7 +55,6 @@ public class PokePasteParserService {
             PokemonModel pokemonModel = new PokemonModel();
 
             String fullTextBlock = pokemonElement.getElementsByTag("pre").text();
-            String nameItemDividerString = "@", abilityString = "Ability:", levelString = "Level:", evsString = "EVs:", natureString = "Nature", ivsString = "IVs:";
             int indexEndOfName = fullTextBlock.indexOf(nameItemDividerString);
             int indexEndOfItem = fullTextBlock.indexOf(abilityString);
             int indexEndOfAbility = fullTextBlock.indexOf(levelString);
@@ -42,14 +63,11 @@ public class PokePasteParserService {
             int indexEndOfIVs = fullTextBlock.indexOf(ivsString); // -1 if not found.
 
             // Extract Name and Item
-            String name = fullTextBlock.substring(0, indexEndOfName).trim();
-            String item = fullTextBlock.substring(indexEndOfName + nameItemDividerString.length(), indexEndOfItem).trim();
-            pokemonModel.setName(name);
-            pokemonModel.setItem(item);
+            pokemonModel.setName(fullTextBlock.substring(0, indexEndOfName).trim());
+            pokemonModel.setItem(fullTextBlock.substring(indexEndOfName + nameItemDividerString.length(), indexEndOfItem).trim());
 
             // Extract Ability
-            String ability = fullTextBlock.substring(indexEndOfItem + abilityString.length(), indexEndOfAbility).trim();
-            pokemonModel.setAbility(ability);
+            pokemonModel.setAbility(fullTextBlock.substring(indexEndOfItem + abilityString.length(), indexEndOfAbility).trim());
 
             // Extract EVs
             String evSpread = fullTextBlock.substring(indexEndOfLevel + evsString.length(), indexEndOfNature).trim();
@@ -57,22 +75,17 @@ public class PokePasteParserService {
 
             // Extract Nature
             String[] evsAndNature = evSpread.split("\n");
-            String nature = evsAndNature[evsAndNature.length - 1];
-            pokemonModel.setNature(nature);
+            pokemonModel.setNature(evsAndNature[evsAndNature.length - 1]);
 
             // Extract IVs
             // "IVs:" won't be present if it's a 6IV Pokemon.
             // indexEndOfIVs will be -1 if "IVs:" is not present.
             pokemonModel.setIvSpread(StatSpread.IVSPREAD_FAST_PHYSICAL_ATTACKER());
-            if (indexEndOfIVs > 0) {
-                String ivSpread = fullTextBlock.substring(indexEndOfIVs + ivsString.length());
-                StatSpread ivs = determineIvSpread(ivSpread);
-                pokemonModel.mergeIvSpread(ivs);
-            }
+            if (indexEndOfIVs > 0)
+                pokemonModel.mergeIvSpread(determineIvSpread(fullTextBlock.substring(indexEndOfIVs + ivsString.length())));
 
             // Extract Moves
-            String movesAndMaybeIvs = fullTextBlock.substring(indexEndOfNature + natureString.length());
-            List<String> moves = new ArrayList<>(Arrays.asList(movesAndMaybeIvs.split("\n")));
+            List<String> moves = new ArrayList<>(Arrays.asList(fullTextBlock.substring(indexEndOfNature + natureString.length()).split("\n")));
             moves.remove(0); // first element in list is ""
             // Check for IVs, if present remove it.
             if (indexEndOfIVs > 0) moves.remove(0); // new first element in list "Ivs: ..."

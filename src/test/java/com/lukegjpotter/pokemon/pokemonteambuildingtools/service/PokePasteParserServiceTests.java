@@ -13,9 +13,14 @@ public class PokePasteParserServiceTests {
     @Autowired
     PokePasteParserService pokePasteParserService;
 
+    //@Test
     void parsePokePasteToTeam_String() {
         TeamModel actual = pokePasteParserService.parsePokePasteToTeam(TestUtils.pokePasteString());
-        assertEquals(TestUtils.pokePasteStringTeam(), actual);
+        assertEquals(TestUtils.pokePasteStringTeam().getTeam().size(), actual.getTeam().size(), "Comparing Team Size");
+
+        for (int i = 0; i < actual.getTeam().size(); i++) {
+            assertEquals(TestUtils.pokePasteStringTeam().getTeam().get(i), actual.getTeam().get(i), "Pokemon at position " + i);
+        }
     }
 
     @Test
