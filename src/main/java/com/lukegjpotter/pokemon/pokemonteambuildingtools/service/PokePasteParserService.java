@@ -18,28 +18,52 @@ import java.util.StringTokenizer;
 @Service
 public class PokePasteParserService {
 
-    private String nameItemDividerString = "@", abilityString = "Ability:", levelString = "Level:", evsString = "EVs:", natureString = "Nature", ivsString = "IVs:";
+    private String nameItemDividerString = "@", abilityString = "Ability:", levelString = "Level:", evsString = "EVs:", natureString = "Nature", ivsString = "IVs:", movePrefix = "- ";
 
     public TeamModel parsePokePasteToTeam(String pokePaste) {
 
+        // Loop Variables
         TeamModel teamModel = new TeamModel();
+        List<Move> moveset = new ArrayList<>();
+        PokemonModel pokemonModel = new PokemonModel();
 
         String[] linesOfPokePaste = pokePaste.split("\n");
-        int numberOfMovesSet = 0;
 
         for (String line : linesOfPokePaste) {
             line = line.trim();
-            PokemonModel pokemonModel = new PokemonModel();
 
             // Extract Name And Item
             if (line.contains(nameItemDividerString)) {
                 int indexEndOfName = line.indexOf(nameItemDividerString);
                 pokemonModel.setName(line.substring(0, indexEndOfName).trim());
                 pokemonModel.setItem(line.substring(indexEndOfName + nameItemDividerString.length()).trim());
-                break;
             }
 
-            if (numberOfMovesSet == 4) teamModel.addPokemonToTeam(pokemonModel);
+            // Extract Ability
+            if (line.startsWith(abilityString)) pokemonModel.setAbility(line.split(":")[1].substring(1));
+
+            // Extract EVs
+            if (line.startsWith(evsString))
+                pokemonModel.setEvSpread(determineEvSpread(line.substring(evsString.length())));
+
+            // Extract Nature
+            if (line.contains(natureString)) pokemonModel.setNature(line.split(" ")[0]);
+
+            // Extract IVs
+            if (line.startsWith(ivsString))
+                pokemonModel.setIvSpread(determineIvSpread(line.substring(ivsString.length())));
+
+            // Extract Move
+            if (line.startsWith(movePrefix)) moveset.add(new Move(line.substring(movePrefix.length())));
+
+            // End Loop, as 4th move has been added.
+            if (moveset.size() == 4) {
+                pokemonModel.setMoveset(moveset);
+                teamModel.addPokemonToTeam(pokemonModel);
+                // Reset Loop Variables
+                pokemonModel = new PokemonModel();
+                moveset = new ArrayList<>();
+            }
         }
 
         return teamModel;
@@ -91,7 +115,7 @@ public class PokePasteParserService {
             if (indexEndOfIVs > 0) moves.remove(0); // new first element in list "Ivs: ..."
             // Remove the "- " at the start of the Moves.
             List<Move> moveset = new ArrayList<>();
-            moves.forEach(s -> moveset.add(new Move(s.substring(2).trim())));
+            moves.forEach(s -> moveset.add(new Move(s.substring(movePrefix.length()).trim())));
             pokemonModel.setMoveset(moveset);
 
             teamModel.addPokemonToTeam(pokemonModel);

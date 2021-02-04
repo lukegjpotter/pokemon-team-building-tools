@@ -13,7 +13,7 @@ public class PokePasteParserServiceTests {
     @Autowired
     PokePasteParserService pokePasteParserService;
 
-    //@Test
+    @Test
     void parsePokePasteToTeam_String() {
         TeamModel actual = pokePasteParserService.parsePokePasteToTeam(TestUtils.pokePasteString());
         assertEquals(TestUtils.pokePasteStringTeam().getTeam().size(), actual.getTeam().size(), "Comparing Team Size");
