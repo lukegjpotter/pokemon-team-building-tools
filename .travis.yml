@@ -17,24 +17,14 @@ jdk:  oraclejdk13
 services:
   - postgresql
 
-addons:
-  postgresql: '12.2'
-
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql --version
-  - psql -c 'CREATE DATABASE testdb;' -U postgres
-
-script:
   - psql -c 'SELECT version();'
-  - ./gradlew build bootRun
+  - psql -c 'CREATE DATABASE testdb;' -U postgres
 
 env:
   - DATABASE_URL=postgres://postgres:@localhost:5432/testdb
-  - global:
-    - PGUSER=postgres
-    - PGPORT=5432
-    - PGPASSWORD=1234
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
