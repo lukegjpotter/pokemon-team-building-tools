@@ -5,7 +5,7 @@ import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.TeamModel;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.service.PokePasteParserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,25 +18,36 @@ public class PokePasteController {
     @Autowired
     private RemoteConnectionUtils remoteConnectionUtils;
 
+
+    /**
+     * A Test Method.
+     *
+     * @return A Blank Test Team
+     */
+    @GetMapping("/test")
+    public TeamModel getTestTeam() {
+        return new TeamModel();
+    }
+
     /**
      * To get a Team from a PokePaste Text String.
      *
-     * @param pokepasteString
-     * @return
+     * @param pokepasteString Body Raw Text format. e.g. Charizard-Gmax @ Focus Sash \\n Ability: Solar Power
+     * @return A TeamModel derived from the Paste in the Body.
      */
-    @GetMapping("{pokepaste}")
-    public TeamModel getTeamFromPokePasteString(@PathVariable("pokepasteString") String pokepasteString) {
+    @GetMapping("/string")
+    public TeamModel getTeamFromPokePasteString(@RequestBody String pokepasteString) {
         return pokePasteParserService.parsePokePasteToTeam(pokepasteString);
     }
 
     /**
      * To get a Team from a PokePaste URL.
      *
-     * @param pokepasteUrlString
-     * @return
+     * @param pokepasteUrlString Body Raw Text format. e.g. https://pokepast.es/7773fa9f6619a549
+     * @return A TeamModel derived from the PokePasteURL in the Body.
      */
-    @GetMapping("{pokepasteurl}")
-    public TeamModel getTeamFromPokePasteUrl(@PathVariable("pokepasteUrlString") String pokepasteUrlString) {
+    @GetMapping("/url")
+    public TeamModel getTeamFromPokePasteUrl(@RequestBody String pokepasteUrlString) {
         String pokepasteHtmlSource = remoteConnectionUtils.getPokePasteUrlHtmlSource(pokepasteUrlString);
         return pokePasteParserService.parsePokePasteUrlToTeam(pokepasteHtmlSource);
     }

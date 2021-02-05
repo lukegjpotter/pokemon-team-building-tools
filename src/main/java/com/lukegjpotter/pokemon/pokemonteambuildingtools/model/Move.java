@@ -36,6 +36,54 @@ public class Move {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEffect() {
+        return effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
+
+    public String getDetailedEffect() {
+        return detailedEffect;
+    }
+
+    public void setDetailedEffect(String detailedEffect) {
+        this.detailedEffect = detailedEffect;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public int getSecondaryEffectChance() {
+        return secondaryEffectChance;
+    }
+
+    public void setSecondaryEffectChance(int secondaryEffectChance) {
+        this.secondaryEffectChance = secondaryEffectChance;
+    }
+
     @Override
     public String toString() {
         return "Move {" +

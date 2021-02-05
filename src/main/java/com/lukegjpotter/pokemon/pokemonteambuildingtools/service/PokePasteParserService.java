@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
 @Service
 public class PokePasteParserService {
 
-    private String nameItemDividerString = "@", abilityString = "Ability:", levelString = "Level:", evsString = "EVs:", natureString = "Nature", ivsString = "IVs:", movePrefix = "- ";
+    private final String nameItemDividerString = "@", abilityString = "Ability:", levelString = "Level:", evsString = "EVs:", natureString = "Nature", ivsString = "IVs:", movePrefix = "- ";
 
     public TeamModel parsePokePasteToTeam(String pokePaste) {
 
