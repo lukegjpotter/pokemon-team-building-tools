@@ -33,4 +33,8 @@ The response should be along the lines of:
 
     {"id":0,"team":[]}
 
+Swagger UI REST documentation is available on:
+
+    http://localhost:8080/swagger-ui/index.html
+
 Then use `ctrl + C` to stop the Server.
