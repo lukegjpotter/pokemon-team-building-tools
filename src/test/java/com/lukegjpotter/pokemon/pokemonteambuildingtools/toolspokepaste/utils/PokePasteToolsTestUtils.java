@@ -1,4 +1,4 @@
-package com.lukegjpotter.pokemon.pokemonteambuildingtools.service;
+package com.lukegjpotter.pokemon.pokemonteambuildingtools.toolspokepaste.utils;
 
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.Move;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.PokemonModel;
@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Component
-class TestUtils {
+public  class PokePasteToolsTestUtils {
 
     public static String pokePasteString() {
         return "Charizard-Gmax @ Focus Sash  \n" +

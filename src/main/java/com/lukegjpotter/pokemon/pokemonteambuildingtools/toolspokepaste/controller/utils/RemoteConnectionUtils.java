@@ -1,4 +1,4 @@
-package com.lukegjpotter.pokemon.pokemonteambuildingtools.controller.utils;
+package com.lukegjpotter.pokemon.pokemonteambuildingtools.toolspokepaste.controller.utils;
 
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
-package com.lukegjpotter.pokemon.pokemonteambuildingtools.controller;
+package com.lukegjpotter.pokemon.pokemonteambuildingtools.toolspokepaste.controller;
 
-import com.lukegjpotter.pokemon.pokemonteambuildingtools.controller.utils.RemoteConnectionUtils;
+import com.lukegjpotter.pokemon.pokemonteambuildingtools.toolspokepaste.controller.utils.RemoteConnectionUtils;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.TeamModel;
-import com.lukegjpotter.pokemon.pokemonteambuildingtools.service.PokePasteParserService;
+import com.lukegjpotter.pokemon.pokemonteambuildingtools.toolspokepaste.service.PokePasteParserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,4 +1,4 @@
-package com.lukegjpotter.pokemon.pokemonteambuildingtools.service;
+package com.lukegjpotter.pokemon.pokemonteambuildingtools.toolspokepaste.service;
 
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.Move;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.PokemonModel;
