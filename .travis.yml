@@ -12,7 +12,7 @@ cache:
 
 dist: focal
 
-jdk: oraclejdk13
+jdk: oraclejdk11
 
 services:
   - postgresql
@@ -34,9 +34,9 @@ before_script:
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
 
 env:
-  - DATABASE_URL=postgres://postgres:@localhost:5433/travis_ci_test
+  - DATABASE_URL=postgres://postgres:@localhost:5432/travis_ci_test
   - global:
-      - PGPORT=5433
+      - PGPORT=5432
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
