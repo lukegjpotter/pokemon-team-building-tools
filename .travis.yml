@@ -14,6 +14,11 @@ dist: focal
 
 jdk: oraclejdk11
 
+env:
+  - DATABASE_URL=postgres://postgres:@localhost:5433/travis_ci_test
+  - global:
+      - PGPORT=5433
+
 services:
   - postgresql
 
@@ -29,14 +34,9 @@ before_install:
 
 before_script:
   - cp config/database.yml.travis config/database.yml
-  - psql --version -p $PGPORT
-  - psql -c 'SELECT version();' -p $PGPORT
-  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p $PGPORT
-
-env:
-  - DATABASE_URL=postgres://postgres:@localhost:5433/travis_ci_test
-  - global:
-      - PGPORT=5433
+  - psql --version -p 5433
+  - psql -c 'SELECT version();' -p 5433
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
