@@ -30,13 +30,11 @@ addons:
       - postgresql-12
       - postgresql-client-12
 
-before_install:
-  - sudo service postgresql restart 12
-
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql --version -p 5433
   - sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' /etc/postgresql/12/main/pg_hba.conf
+  - sudo service postgresql restart 12
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
 
 after_success:
