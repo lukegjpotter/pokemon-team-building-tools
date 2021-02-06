@@ -22,6 +22,14 @@ env:
 services:
   - postgresql
 
+# Hardcode Postgres v12, so that it matches Heroku.
+addons:
+  postgresql: '12'
+  apt:
+    packages:
+      - postgresql-12
+      - postgresql-client-12
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql --version -p 5433
