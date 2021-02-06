@@ -4,6 +4,7 @@ import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.PokemonModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DamageCalcModel {
 
@@ -53,5 +54,18 @@ public class DamageCalcModel {
 
     public void addDefensiveCalc(String defensiveCalc) {
         this.defensiveCalcs.add(defensiveCalc);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DamageCalcModel that = (DamageCalcModel) o;
+        return Objects.equals(pokemonFromTeam, that.pokemonFromTeam) && Objects.equals(opposingPokemon, that.opposingPokemon) && Objects.equals(offensiveCalcs, that.offensiveCalcs) && Objects.equals(defensiveCalcs, that.defensiveCalcs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pokemonFromTeam, opposingPokemon, offensiveCalcs, defensiveCalcs);
     }
 }

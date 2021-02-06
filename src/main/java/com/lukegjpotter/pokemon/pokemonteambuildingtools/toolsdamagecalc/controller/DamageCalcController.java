@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/damagecalc")
 public class DamageCalcController {
 
-    @Autowired private DamageCalcService damageCalcService;
-    @Autowired private PokePasteController pokePasteController;
+    @Autowired
+    private DamageCalcService damageCalcService;
+    @Autowired
+    private PokePasteController pokePasteController;
 
     /**
      * A Test Method.
@@ -28,23 +32,21 @@ public class DamageCalcController {
     }
 
     /**
-     *
-     * @param pokepasteString
-     * @return
+     * @param pokepasteString A copy and paste of a PokePaste.
+     * @return The Damage Calculations for this team versus the Meta.
      */
     @GetMapping("pokepastestring")
-    public DamageCalcModel getDamageCalcForPokePasteString(@RequestBody String pokepasteString) {
+    public List<DamageCalcModel> getDamageCalcForPokePasteString(@RequestBody String pokepasteString) {
         TeamModel team = pokePasteController.getTeamFromPokePasteString(pokepasteString);
         return damageCalcService.getDamageCalcForTeam(team);
     }
 
     /**
-     *
-     * @param pokepasteUrlString
-     * @return
+     * @param pokepasteUrlString A pokepaste URL.
+     * @return The Damage Calculations for this team versus the Meta.
      */
     @GetMapping("pokepasteurl")
-    public DamageCalcModel getDamageCalcForPokePasteUrl(@RequestBody String pokepasteUrlString) {
+    public List<DamageCalcModel> getDamageCalcForPokePasteUrl(@RequestBody String pokepasteUrlString) {
         TeamModel team = pokePasteController.getTeamFromPokePasteUrl(pokepasteUrlString);
         return damageCalcService.getDamageCalcForTeam(team);
     }

@@ -2,21 +2,34 @@ package com.lukegjpotter.pokemon.pokemonteambuildingtools.toolsdamagecalc.servic
 
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.PokemonModel;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.model.TeamModel;
+import com.lukegjpotter.pokemon.pokemonteambuildingtools.toolsdamagecalc.api.DamageCalcSeleniumWrapper;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.toolsdamagecalc.model.DamageCalcModel;
 import com.lukegjpotter.pokemon.pokemonteambuildingtools.toolsdamagecalc.repository.OpposingPokemonInMetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DamageCalcService {
 
-    @Autowired private OpposingPokemonInMetaRepository opposingPokemonInMetaRepository;
+    @Autowired
+    private OpposingPokemonInMetaRepository opposingPokemonInMetaRepository;
+    @Autowired
+    private DamageCalcSeleniumWrapper damageCalcSeleniumWrapper;
 
-    public DamageCalcModel getDamageCalcForTeam(TeamModel team) {
+    public List<DamageCalcModel> getDamageCalcForTeam(TeamModel team) {
 
         PokemonModel opposingPokemon = opposingPokemonInMetaRepository.findByShowdownUsageRanking(1).getPokemonModel();
-        DamageCalcModel damageCalcModel = new DamageCalcModel();
+        List<DamageCalcModel> damageCalcList = new ArrayList<>();
 
-        return damageCalcModel;
+        team.getTeam().forEach(pokemonModel -> damageCalcList.add(getDamageCalcForPokemon(pokemonModel, opposingPokemon)));
+
+        return damageCalcList;
+    }
+
+    public DamageCalcModel getDamageCalcForPokemon(PokemonModel pokemonFromTeam, PokemonModel opposingPokemon) {
+        return damageCalcSeleniumWrapper.calc(pokemonFromTeam, opposingPokemon);
     }
 }
