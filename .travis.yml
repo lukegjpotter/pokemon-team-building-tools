@@ -15,9 +15,9 @@ dist: focal
 jdk: oraclejdk11
 
 env:
-  - DATABASE_URL=postgres://postgres:@localhost:5433/travis_ci_test
   - global:
       - PGPORT=5433
+      - DATABASE_URL=postgres://postgres:@localhost:5433/travis_ci_test
 
 services:
   - postgresql
@@ -36,6 +36,7 @@ before_script:
   - sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' /etc/postgresql/12/main/pg_hba.conf
   - sudo service postgresql restart 12
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
+  - echo $DATABASE_URL
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
