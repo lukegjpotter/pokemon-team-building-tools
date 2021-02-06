@@ -29,9 +29,9 @@ before_install:
 
 before_script:
   - cp config/database.yml.travis config/database.yml
-  - psql --version
-  - psql -c 'SELECT version();'
-  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+  - psql --version -p 5433
+  - psql -c 'SELECT version();' -p 5433
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
 
 env:
   - DATABASE_URL=postgres://postgres:@localhost:5432/travis_ci_test
