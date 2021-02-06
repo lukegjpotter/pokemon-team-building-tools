@@ -11,6 +11,8 @@
     "phantomjsdriver"
   ],
   "buildpacks": [{
+    "url": "heroku/gradle"
+  },{
     "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
   }],
   "addons": [
