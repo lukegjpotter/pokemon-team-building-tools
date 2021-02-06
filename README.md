@@ -7,7 +7,8 @@ After that we can start to do EV Spread optimisations, incase EVs are being wast
 
 ## Project Status
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/lukegjpotter/pokemon-team-building-tools/blob/master/)  
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/lukegjpotter/pokemon-team-building-tools/blob/master/)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/9699a21ad146ad431f8f)  
 [![Maintainability](https://api.codeclimate.com/v1/badges/8bcc99b2fa15519f0655/maintainability)](https://codeclimate.com/github/lukegjpotter/pokemon-team-building-tools/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8bcc99b2fa15519f0655/test_coverage)](https://codeclimate.com/github/lukegjpotter/pokemon-team-building-tools/test_coverage)
 [![Build Status](https://travis-ci.com/lukegjpotter/pokemon-team-building-tools.svg?branch=master)](https://travis-ci.com/lukegjpotter/pokemon-team-building-tools)
