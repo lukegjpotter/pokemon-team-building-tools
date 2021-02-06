@@ -13,7 +13,7 @@ public class TeamModel {
     @Id @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
 
-    @OneToMany()
+    @OneToMany
     private List<PokemonModel> team;
 
     public TeamModel() {

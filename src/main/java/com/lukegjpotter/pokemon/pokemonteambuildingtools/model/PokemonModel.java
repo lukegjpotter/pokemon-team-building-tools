@@ -13,13 +13,13 @@ public class PokemonModel {
     private long id;
 
     private String name, item, ability, nature, gender;
-    @OneToOne()
-    @JoinColumn()
+    @OneToOne
+    @JoinColumn
     private StatSpread evSpread;
-    @OneToOne()
-    @JoinColumn()
+    @OneToOne
+    @JoinColumn
     private StatSpread ivSpread;
-    @OneToMany()
+    @OneToMany
     private List<Move> moveset;
 
     public PokemonModel(String name, String item, String ability, String nature, String gender, StatSpread evSpread, StatSpread ivSpread, List<Move> moveset) {
