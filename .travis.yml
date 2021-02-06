@@ -34,9 +34,11 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - psql --version -p 5433
   - sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' /etc/postgresql/12/main/pg_hba.conf
-  - sudo pg_ctlcluster 12 main stop
-  - sudo pg_ctlcluster 12 main start
+  - sudo systemctl restart postgresql@12-main
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
+
+script:
+  - ./gradlew check --stacktrace
 
 after_success:
   - ./gradlew check jacocoTestReport coveralls
