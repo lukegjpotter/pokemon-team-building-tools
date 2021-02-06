@@ -33,8 +33,7 @@ addons:
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql --version -p 5433
-  - ls /etc/postgresql/
-  - cat /etc/postgresql/12.5/main/pg_hba.conf
+  - cat /etc/postgresql/12/main/pg_hba.conf
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
 
 after_success:
