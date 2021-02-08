@@ -17,7 +17,7 @@ jdk: oraclejdk11
 env:
   - global:
       - PGPORT=5433
-      - DATABASE_URL=postgres://postgres:@127.0.0.1:5433/pokemonteams
+      - DATABASE_URL=postgres://postgres:@localhost:5433/pokemonteams
 
 services:
   - postgresql
@@ -37,9 +37,7 @@ before_script:
   - sudo systemctl restart postgresql@12-main
   - psql -c 'CREATE DATABASE pokemonteams;' -U postgres -p 5433
   - psql -c 'SELECT datname FROM pg_database;' -U postgres -p 5433
+  - echo $DATABASE_URL
 
 script:
-  - ./gradlew check --stacktrace
-
-after_success:
-  - ./gradlew check jacocoTestReport coveralls
+  - ./gradlew check jacocoTestReport coveralls --stacktrace
