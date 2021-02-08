@@ -17,7 +17,7 @@ jdk: oraclejdk11
 env:
   - global:
       - PGPORT=5433
-      - DATABASE_URL=postgres://postgres:@localhost:5433/travis_ci_test
+      - DATABASE_URL=postgres://postgres:@localhost:5433/pokemonteams
 
 services:
   - postgresql
@@ -35,7 +35,7 @@ before_script:
   - psql --version -p 5433
   - sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' /etc/postgresql/12/main/pg_hba.conf
   - sudo systemctl restart postgresql@12-main
-  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
+  - psql -c 'CREATE DATABASE pokemonteams;' -U postgres -p 5433
   - psql -c 'SELECT datname FROM pg_database;' -U postgres -p 5433
 
 script:
