@@ -2,7 +2,6 @@ package com.lukegjpotter.pokemon.pokemonteambuildingtools.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
@@ -11,7 +10,7 @@ public class StatSpread {
 
     private static final int IV_MAX = 31, MIN = 0;
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue()
     private long id;
     private int hp, atk, def, spa, spd, spe;
 

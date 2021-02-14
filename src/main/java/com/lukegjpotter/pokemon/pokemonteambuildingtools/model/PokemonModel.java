@@ -9,7 +9,7 @@ import java.util.Objects;
 public class PokemonModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue()
     private long id;
 
     private String name, item, ability, nature, gender;

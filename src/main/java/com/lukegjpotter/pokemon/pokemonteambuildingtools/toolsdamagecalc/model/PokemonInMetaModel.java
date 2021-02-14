@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class PokemonInMetaModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue()
     private long id;
 
     @OneToOne

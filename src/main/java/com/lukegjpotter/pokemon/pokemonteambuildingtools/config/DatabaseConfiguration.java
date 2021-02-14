@@ -1,5 +1,7 @@
 package com.lukegjpotter.pokemon.pokemonteambuildingtools.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +18,11 @@ public class DatabaseConfiguration {
     @Autowired
     private Environment environment;
 
+    Logger logger = LoggerFactory.getLogger(DatabaseConfiguration.class);
+
     @Bean
     public DataSource dataSource() {
+        logger.info("Creating DataSource Bean");
         DatabaseConfigurationModel db = parseDatabaseUrlEnvironmentalVariable();
 
         return DataSourceBuilder
@@ -36,6 +41,7 @@ public class DatabaseConfiguration {
         URI dbUri = null;
         try {
             dbUri = new URI(environment.getProperty("DATABASE_URL", "postgres://postgres:@localhost:5432/pokemonteams"));
+            logger.info("Database_Url is: " + dbUri.toString());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
