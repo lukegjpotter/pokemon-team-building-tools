@@ -40,4 +40,4 @@ before_script:
   - echo $DATABASE_URL
 
 script:
-  - ./gradlew check jacocoTestReport --scan
+  - ./gradlew check jacocoTestReport --stacktrace
